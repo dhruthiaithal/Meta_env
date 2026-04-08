@@ -1,0 +1,6 @@
+spec_version: "1.0"
+name: "medsched_pro_v2"
+description: "High-fidelity clinical scheduling with resource constraints and temporal decay."
+version: "2.0.0"
+tags: ["healthcare", "rl-ready", "simulation"]
+entry_point: "env:MedSchedProEnv"
