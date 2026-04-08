@@ -8,8 +8,8 @@ def get_easy_task():
 
 def grade_easy_task(env):
     if "P1" in env.schedule and "P2" in env.schedule:
-        return 0.99
-    return 0.01
+        return 0.95
+    return 0.05
 
 def get_medium_task():
     return [
@@ -25,11 +25,11 @@ def grade_medium_task(env):
     if "P2" in env.schedule:
         idx = env.schedule.index("P2")
         if idx == 0:
-            return 0.99
+            return 0.95
         elif idx < 4:
             return 0.8
         return 0.5
-    return 0.01
+    return 0.05
 
 def get_hard_task():
     patients = [Patient(id=f"P{i}", arrival_time=i*5, symptoms="Routine Follow-up", health_score=1.0) for i in range(1, 10)]
@@ -39,5 +39,5 @@ def get_hard_task():
 def grade_hard_task(env):
     # 10 patients, 8 slots. P10 must take precedence.
     if "P10" in env.schedule:
-        return 0.99
-    return 0.01
+        return 0.95
+    return 0.05
