@@ -1,23 +1,15 @@
 from models import Patient
 
-def clamp_score(score):
-    # ensures strictly between 0 and 1 (never exactly 0 or 1)
-    return max(0.01, min(0.99, score))
-
-
 def get_easy_task():
     return [
         Patient(id="P1", arrival_time=0, symptoms="Routine checkup", health_score=0.95),
         Patient(id="P2", arrival_time=5, symptoms="Routine physical exam", health_score=0.95)
     ]
 
-
-def grade_easy_task(env):
-    score = 0.1
+def grade_easy_task(env) -> float:
     if "P1" in env.schedule and "P2" in env.schedule:
-        score = 0.9
-    return clamp_score(score)
-
+        return 0.99
+    return 0.01
 
 def get_medium_task():
     return [
@@ -28,19 +20,16 @@ def get_medium_task():
         Patient(id="P5", arrival_time=20, symptoms="Routine vision test", health_score=0.95)
     ]
 
-
-def grade_medium_task(env):
-    score = 0.1
+def grade_medium_task(env) -> float:
     if "P2" in env.schedule:
         idx = env.schedule.index("P2")
         if idx == 0:
-            score = 0.9
+            return 0.99
         elif idx < 4:
-            score = 0.8
+            return 0.8
         else:
-            score = 0.5
-    return clamp_score(score)
-
+            return 0.5
+    return 0.01
 
 def get_hard_task():
     patients = [
@@ -52,9 +41,7 @@ def get_hard_task():
     )
     return patients
 
-
-def grade_hard_task(env):
-    score = 0.1
+def grade_hard_task(env) -> float:
     if "P10" in env.schedule:
-        score = 0.9
-    return clamp_score(score)
+        return 0.99
+    return 0.01
