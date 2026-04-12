@@ -10,6 +10,9 @@ API_BASE_URL = os.environ.get("API_BASE_URL", "https://api.openai.com/v1")
 MODEL_NAME = os.environ.get("MODEL_NAME", "gpt-4o")
 HF_TOKEN = os.environ.get("HF_TOKEN")
 
+if HF_TOKEN is None:
+    raise ValueError("HF_TOKEN environment variable is required")
+
 client = OpenAI(
     api_key=HF_TOKEN,
     base_url=API_BASE_URL
@@ -25,7 +28,7 @@ def run_task(task_name, patients, grader):
     step_count = 0
     rewards_list = []
     success = False
-    score = 0.0
+    score = 0
     
     try:
         while True:
